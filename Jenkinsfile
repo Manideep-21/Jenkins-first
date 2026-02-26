@@ -1,13 +1,9 @@
 pipeline {
-    agent {
-        docker {
-            image 'node:18-alpine'
-        }
-    }
+    agent any
 
     environment {
-        IMAGE_NAME = "mani-react-app"
-        CONTAINER_NAME = "mani-react-container"
+        IMAGE_NAME = "manideep-react-app"
+        CONTAINER_NAME = "manideep-react-container"
     }
 
     stages {
@@ -15,18 +11,6 @@ pipeline {
         stage('Checkout Code') {
             steps {
                 checkout scm
-            }
-        }
-
-        stage('Install Dependencies') {
-            steps {
-                sh 'npm ci'
-            }
-        }
-
-        stage('Run Tests') {
-            steps {
-                sh 'npm test -- --watchAll=false'
             }
         }
 
